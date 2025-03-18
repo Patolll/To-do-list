@@ -15,6 +15,7 @@ header {
   padding: 6px;
   background: linear-gradient(135deg, #4caf50, #388e3c);
   color: white;
+  background-color: #ffff8c;
 }
 
 header h1 {
@@ -108,6 +109,8 @@ header h1 {
     0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
 }
 .tasks {
+  background-color: white;
+  border-radius: 5px;
   flex-grow: 1;
   width: 100%;
   margin-bottom: 100px;
@@ -225,13 +228,14 @@ footer {
 }
 .checkButtonCont {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   position: absolute;
-  right: 0px;
+  right: 1%;
 }
 .liDiv {
   position: relative;
   max-width: 70%;
+  font-weight: bold;
   display: block;
   word-wrap: break-word;
   white-space: normal;
@@ -267,4 +271,8 @@ footer {
 }
 .checkboxC:hover {
   background-color: #4caf50;
+}
+.marked {
+}
+.active {
 }

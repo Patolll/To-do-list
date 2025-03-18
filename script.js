@@ -4,7 +4,7 @@ function add() {
 
   if (input.value.trim() !== "") {
     const liItem = document.createElement("li");
-
+    liItem.style.borderRadius = "5px";
     const liDiv = document.createElement("div");
     liDiv.textContent = input.value;
     liDiv.classList.add("liDiv");
@@ -62,7 +62,7 @@ function add() {
 
     liItem.appendChild(liDiv);
     liItem.appendChild(checkButtonCont);
-
+    liItem.classList.add("active");
     ulList.appendChild(liItem);
 
     deleteButton.addEventListener("click", () => {
@@ -72,9 +72,46 @@ function add() {
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) {
         liDiv.style.textDecoration = "line-through";
+        liItem.style.backgroundColor = "#ffff8c";
+        liItem.classList.remove("active");
+        liItem.classList.add("marked");
       } else {
         liDiv.style.textDecoration = "none";
+        liItem.style.backgroundColor = "";
+        liItem.classList.add("active");
+        liItem.classList.remove("marked");
       }
+    });
+
+    const allBtn = document.getElementById("all");
+    const completedBtn = document.getElementById("completed");
+    const activeBtn = document.getElementById("active");
+
+    completedBtn.addEventListener("click", () => {
+      const liItems = document.querySelectorAll("li");
+      liItems.forEach((liItem) => {
+        if (liItem.classList.contains("active")) {
+          liItem.style.display = "none";
+        } else {
+          liItem.style.display = "flex";
+        }
+      });
+    });
+    allBtn.addEventListener("click", () => {
+      const allItems = document.querySelectorAll("li");
+      allItems.forEach((liItem) => {
+        liItem.style.display = "flex";
+      });
+    });
+    activeBtn.addEventListener("click", () => {
+      const activeItems = document.querySelectorAll("li");
+      activeItems.forEach((liItem) => {
+        if (liItem.classList.contains("marked")) {
+          liItem.style.display = "none";
+        } else {
+          liItem.style.display = "flex";
+        }
+      });
     });
 
     input.value = "";
