@@ -200,19 +200,28 @@ footer {
   transform: scale(0.8);
 }
 .checkboxC {
-  border: 1px solid black;
+  border: none;
   display: flex;
+  background-color: #2d8d32;
   flex-direction: row;
+  border-radius: 5px;
   align-items: center; /* Wyrównanie w pionie */
+  color: white;
   justify-content: center;
+  font-size: smaller;
+  width: 175px;
+  height: 25px;
+  user-select: none;
+  transition: 0.3s background-color ease;
+  padding-right: 10px;
 }
 .checkboxC label {
-  flex-grow: 1; /* Sprawia, że label zajmuje całą pozostałą przestrzeń */
-  margin-left: 10px; /* Odstęp między checkboxem a label */
+  line-height: 25px;
   max-width: 100px;
 }
 .checkboxC input {
-  flex-shrink: 0; /* Zapobiega zmniejszaniu się checkboxa */
+  flex-shrink: 0;
+  margin-right: 5px;
 }
 .checkButtonCont {
   display: flex;
@@ -227,121 +236,35 @@ footer {
   word-wrap: break-word;
   white-space: normal;
 }
-/* From Uiverse.io by Pankaj-Meharchandani */
-/* Hide the default checkbox */
-.container input {
+.checkboxC input {
+  flex-shrink: 0;
+  vertical-align: middle;
+  width: 24px; /* Zwiększony rozmiar checkboxa */
+  height: 24px; /* Zwiększony rozmiar checkboxa */
+  appearance: none; /* Usuwa domyślny wygląd checkboxa */
+  border-radius: 5px; /* Zaokrąglone rogi */
+  background-color: white; /* Kolor tła domyślny */
+  position: relative; /* Potrzebne do umiejscowienia markera */
+  transition: background-color 0.3s, border-color 0.3s; /* Płynne przejście */
+  transform: scale(0.9); /* Zwiększenie checkboxa */
+}
+
+.checkboxC input:checked {
+  background-color: #ffffff; /* Kolor tła, gdy zaznaczone */
+  border-color: #ffffff; /* Kolor krawędzi, gdy zaznaczone */
+}
+
+.checkboxC input:checked::after {
+  content: ""; /* Pseudo-element do dodania ticka */
   position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+  top: 1px; /* Ustawienie góry dla lepszego dopasowania */
+  left: 7px; /* Ustawienie lewej krawędzi */
+  width: 6px; /* Szerokość ticka */
+  height: 12px; /* Wysokość ticka */
+  border: solid #000000; /* Kolor samego "ticka" */
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg); /* Obraca, aby wyglądało jak tik */
 }
-
-/* Container holding the custom checkbox */
-.container {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  font-size: 20px;
-  user-select: none;
-}
-
-/* The custom checkbox (3D box with gradient) */
-.checkmark {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 2em;
-  width: 2em;
-  background: linear-gradient(
-    145deg,
-    #ececec,
-    #c8c8c8
-  ); /* Soft light 3D effect */
-  border-radius: 12px; /* Rounded square */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 -2px 5px rgba(0, 0, 0, 0.1); /* 3D shadow */
-  transition: background-color 0.4s ease, transform 0.3s ease;
-  overflow: hidden;
-  position: relative;
-}
-
-/* When checked, add vibrant gradient background */
-.container input:checked ~ .checkmark {
-  background: linear-gradient(45deg, #42e695, #3bb2b8);
-  transform: scale(1.1); /* Slight pop-out effect */
-  box-shadow: 0 0px 20px rgba(66, 230, 149, 0.6),
-    inset 0 -2px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* The checkmark itself */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-  width: 0.5em;
-  height: 1em;
-  border: solid white;
-  border-width: 0 0.2em 0.2em 0;
-  transform: rotate(45deg);
-  left: 0.65em;
-  top: 0.2em;
-}
-
-/* When checked, show the checkmark with a pulse animation */
-.container input:checked ~ .checkmark:after {
-  display: block;
-  animation: pulse 0.6s ease forwards;
-}
-
-/* Pulse animation for checkmark */
-@keyframes pulse {
-  0% {
-    transform: scale(0) rotate(45deg);
-  }
-  50% {
-    transform: scale(1.2) rotate(45deg);
-  }
-  100% {
-    transform: scale(1) rotate(45deg);
-  }
-}
-
-/* Add sparkles when checked */
-.container input:checked ~ .checkmark:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 120%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.5),
-    transparent 80%
-  );
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  border-radius: 50%;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  animation: sparkle 0.6s ease-out forwards;
-}
-
-@keyframes sparkle {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-  }
-}
-
-/* On hover, make it feel interactive with a glowing border */
-.container:hover .checkmark {
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 4px 10px rgba(0, 0, 0, 0.2);
+.checkboxC:hover {
+  background-color: #4caf50;
 }

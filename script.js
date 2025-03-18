@@ -3,27 +3,32 @@ function add() {
   const ulList = document.querySelector(".tasks");
 
   if (input.value.trim() !== "") {
+    const liItem = document.createElement("li");
+
     const liDiv = document.createElement("div");
     liDiv.textContent = input.value;
-    const liItem = document.createElement("li");
-    liDiv.classList.add(liDiv);
+    liDiv.classList.add("liDiv");
+
     const containerMax = document.createElement("div");
+    containerMax.classList.add("checkboxC");
+
     const checkboxContainer = document.createElement("div");
-    const checkButtonCont = document.createElement("div");
     const checkbox = document.createElement("input");
     const checkboxSpan = document.createElement("label");
 
-    checkboxSpan.textContent = "Mark as completed";
-    const checkboxId = "checkbox" + Math.random().toString(36).substr(2, 9); // Generujemy unikalne id
-    checkboxSpan.setAttribute("for", checkboxId);
+    const checkboxId = "checkbox" + Math.random().toString(36).substr(2, 9);
+    checkbox.id = checkboxId;
     checkbox.type = "checkbox";
-    checkbox.id = checkboxId; // Ustawiamy unikalne id dla checkboxa
-    checkButtonCont.classList.add("checkButtonCont");
+    checkboxSpan.textContent = "Mark as completed";
+    checkboxSpan.setAttribute("for", checkboxId);
 
-    containerMax.classList.add("checkboxC");
-    containerMax.appendChild(checkboxContainer);
     checkboxContainer.appendChild(checkbox);
     checkboxContainer.appendChild(checkboxSpan);
+    containerMax.appendChild(checkboxContainer);
+
+    const checkButtonCont = document.createElement("div");
+    checkButtonCont.classList.add("checkButtonCont");
+    checkButtonCont.appendChild(containerMax);
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("noselect", "delete-button");
@@ -53,7 +58,6 @@ function add() {
     deleteButton.appendChild(spanText);
     deleteButton.appendChild(spanIcon);
 
-    checkButtonCont.appendChild(containerMax);
     checkButtonCont.appendChild(deleteButton);
 
     liItem.appendChild(liDiv);
@@ -67,11 +71,9 @@ function add() {
 
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) {
-        liItem.style.backgroundColor = "black";
-        liItem.style.color = "white"; // Można dodać zmianę koloru tekstu, żeby lepiej pasowało
+        liDiv.style.textDecoration = "line-through";
       } else {
-        liItem.style.backgroundColor = "white";
-        liItem.style.color = "black"; // Przywrócenie normalnego koloru tekstu
+        liDiv.style.textDecoration = "none";
       }
     });
 
